@@ -1,0 +1,173 @@
+/* App.css */
+
+/* Reset geral e fontes */
+body, html, #root {
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow-x: hidden; /* Evita rolagem horizontal */
+  background-color: #f4f6f8;
+  color: #333;
+}
+
+h2{
+  font-size: 20px;
+  margin-bottom: 20px;
+  text-align: center; 
+  font-weight: 500;
+  font-style: italic;
+}
+
+h3{
+  font-size: 12px;
+  margin-bottom: 20px;
+  text-align: center; 
+  font-weight: 700;
+}
+
+.app-container {
+  padding: 10px 50px;
+  max-width: 900px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.logo {
+  height: 150px;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+h1 {
+  font-size: 26px;
+  margin-bottom: 24px;
+  text-align: center;
+  color: #2c3e50;
+}
+
+.intro-text {
+  font-size: 16px;
+  line-height: 1.7;
+  margin-bottom: 40px;
+  text-align: justify;
+  color: #555;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 14px;
+  background-color: #e0e0e0;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+.progress {
+  height: 100%;
+  background-color: #4caf50;
+  transition: width 0.3s ease-in-out;
+  border-radius: 10px 0 0 10px;
+}
+
+.opcoes-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.botao-resposta {
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-align: left;
+  transition: background-color 0.2s;
+
+
+  /* padding: 14px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #ffffff;
+  border: 2px solid #4caf50;
+  border-radius: 8px;
+  transition: background-color 0.2s, color 0.2s;
+  text-align: left;
+  color: #4caf50; */
+}
+
+.botao-resposta:hover {
+  background-color: #3b6d9c;
+  color: #fff;
+}
+
+/* impedir que o navegador coloque borda na opção selecionada */
+.botao-resposta:focus {
+  outline: none;
+  box-shadow: none;
+  border: 1px solid #ccc;  
+}
+
+.botao-resposta:active {
+  outline: none;
+  box-shadow: none;
+}
+
+.resumo ul {
+  list-style: none;
+  padding: 0;
+}
+
+.resumo li {
+  margin-bottom: 20px;
+  background-color: #fefefe;
+  padding: 18px;
+  border-radius: 10px;
+  border-left: 4px solid #4caf50;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+.container_botao_enviar{
+  display: flex;
+  justify-content: center;
+}
+
+.botao-enviar {
+  margin-top: 30px;
+  padding: 14px 28px;
+  font-size: 16px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  display: flex;
+  justify-content: center;
+}
+
+.botao-enviar:hover {
+  background-color: #43a047;
+}
+
+.sucesso {
+  color: green;
+  font-weight: bold;
+  margin-top: 20px;
+  text-align: center;
+  font-size: 18px;
+}
