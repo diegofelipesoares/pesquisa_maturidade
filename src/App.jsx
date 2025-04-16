@@ -3,6 +3,7 @@ import deskinho from '../src/img/Deskinho_bandeira.png';
 import './App.css';
 
 function App() {
+  // Mapeamento das coordenadorias e suas respectivas seções
   const coordenadorias = {
     STI: ["AGC", "NESC", "NEPC", "NECI"],
     COAI: ["SEAI", "SECID", "SEIBIO", "SESAM", "SINAPS", "SESERV"],
@@ -12,7 +13,7 @@ function App() {
     COPP: ["NATPJE", "SEAJU", "SAOPE", "SESIP"],
     CSADM: ["CERES", "CRONOS", "JUPYTER", "LUNA", "MARTE", "MERCURIO", "NETUNO", "SATURNO", "TERRA", "URANO", "VENUS"],
   };
-
+  // Perguntas do questionario
   const perguntas = [
     "1. Como avalia o processo de gerenciamento de conhecimento em relação à sua formalização e documentação?",
     "2. Como avalia o fluxo definido para criação, compartilhamento e gerenciamento do conhecimento?",
@@ -27,7 +28,7 @@ function App() {
     "11. Como avalia o ciclo de melhoria contínua do processo de Gerenciamento de conhecimento?",
     "12. Como avalia a frequência de treinamentos sobre boas práticas e operação do processo de gerenciamento de conhecimento?"
   ];
-
+  // Opções de resposta do questionario
   const opcoes = [
     "1 – Ruim",
     "2 – Regular",
@@ -36,22 +37,31 @@ function App() {
     "5 – Muito Satisfeito"
   ];
 
+  // Estado para controlar o índice da pergunta atual, as respostas, se foi enviado e se o cadastro foi concluído
   const [indiceAtual, setIndiceAtual] = useState(0);
+  // Estado para armazenar as respostas
   const [respostas, setRespostas] = useState([]);
+  // Estado para controlar se as respostas foram enviadas
   const [enviado, setEnviado] = useState(false);
+  // Estado para controlar se o cadastro foi concluído
   const [cadastroConcluido, setCadastroConcluido] = useState(false);
+  // Estado para armazenar os dados do formulário
   const [formData, setFormData] = useState({
     login: "",
     coordenadoria: "",
     secao: "",
   });
+  // Estado para armazenar as seções disponíveis com base na coordenadoria selecionada
   const [secoesDisponiveis, setSecoesDisponiveis] = useState([]);
 
+  // Função para responder a pergunta atual e avançar para a próxima
   const responder = (resposta) => {
     setRespostas([...respostas, resposta]);
     setIndiceAtual(indiceAtual + 1);
   };
 
+  // Função para enviar as respostas para o servidor
+  // (substitua a URL pelo endpoint correto do servidor)
   const enviarRespostas = async () => {
     try {
       const response = await fetch('http://localhost:5000/enviar-respostas', {
@@ -67,8 +77,12 @@ function App() {
     }
   };
 
+  // Cálculo do progresso da pesquisa 0 a 100%
   const progresso = (indiceAtual / perguntas.length) * 100;
 
+  // Função para lidar com a mudança nos campos do formulário
+  // Atualiza o estado do formulário com os dados inseridos pelo usuário
+  // e atualiza as seções disponíveis com base na coordenadoria selecionada
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -81,14 +95,17 @@ function App() {
     }
   };
 
+  // Função para lidar com o envio do formulário de cadastro
   const handleCadastro = (e) => {
     e.preventDefault();
     console.log("Dados cadastrados:", formData);
     setCadastroConcluido(true); // Avança para as perguntas
   };
 
+  // Renderização do componente
   return (
     <div className="app-container">
+      {/* Cabeçalho com logo e título */}
       <div className="logo-container">
         <a href="https://vitejs.dev" target="_blank">
           <img src={deskinho} className="logo" alt="Vite logo" />
@@ -100,6 +117,7 @@ function App() {
         </div>
       </div>
 
+      {/* Formulário de cadastro ou perguntas */}
       {!cadastroConcluido ? (
         <div className="cadastro-container">
           <h2>Cadastro</h2>
@@ -115,6 +133,7 @@ function App() {
                 placeholder="nome.sobrenome"
               />
             </div>
+            {/* Campo de coordenadoria */}
             <div>
               <label htmlFor="coordenadoria">Coordenadoria: *</label>
               <select
@@ -125,6 +144,7 @@ function App() {
                 required
               >
                 <option value="">Selecione</option>
+                {/* Gera as opções de coordenadoria dinamicamente */}
                 {Object.keys(coordenadorias).map((coordenadoria) => (
                   <option key={coordenadoria} value={coordenadoria}>
                     {coordenadoria}
@@ -132,6 +152,9 @@ function App() {
                 ))}
               </select>
             </div>
+
+            {/* Campo de seção */}
+            {/* As seções disponíveis são atualizadas com base na coordenadoria selecionada */}
             <div>
               <label htmlFor="secao">Seção: *</label>
               <select
@@ -143,6 +166,7 @@ function App() {
                 disabled={!formData.coordenadoria} // Desabilita se nenhuma coordenadoria for selecionada
               >
                 <option value="">Selecione</option>
+                {/* Gera as opções de seção dinamicamente com base na coordenadoria */}
                 {secoesDisponiveis.map((secao) => (
                   <option key={secao} value={secao}>
                     {secao}
@@ -150,10 +174,12 @@ function App() {
                 ))}
               </select>
             </div>
+            {/* Botão para enviar o formulário */}
             <button type="submit">Iniciar Pesquisa</button>
           </form>
         </div>
       ) : (
+        // Se o cadastro foi concluído, exibe as perguntas
         <>
           <p className="intro-text">
             A análise de maturidade do processo de gerenciamento de conhecimento tem como objetivo
@@ -164,11 +190,11 @@ function App() {
             alinhamento do processo com os objetivos estratégicos da organização e a melhoria contínua
             da gestão do conhecimento.
           </p>
-
+          {/* Barra de progresso */}
           <div className="progress-bar">
             <div className="progress" style={{ width: `${progresso}%` }}></div>
           </div>
-
+          {/* Exibe a pergunta atual e as opções de resposta */}
           {indiceAtual < perguntas.length ? (
             <div>
               <h2>{perguntas[indiceAtual]}</h2>
@@ -179,11 +205,14 @@ function App() {
                   </button>
                 ))}
               </div>
+              {/* Exibe o número da pergunta atual */}
               <p style={{ marginTop: '20px', color: '#666' }}>
                 Pergunta {indiceAtual + 1} de {perguntas.length}
               </p>
             </div>
           ) : (
+            // Se todas as perguntas foram respondidas, exibe o resumo
+            // e o botão para enviar as respostas
             <div className="resumo">
               <div className="container_botao_enviar">
                 {!enviado ? (
@@ -191,9 +220,11 @@ function App() {
                     Enviar Respostas
                   </button>
                 ) : (
+                  // Mensagem de sucesso após o envio
                   <p className="sucesso">Respostas enviadas com sucesso!</p>
                 )}
               </div>
+              {/* Resumo das respostas */}
               <p>Veja abaixo suas respostas:</p>
               <ul>
                 {perguntas.map((pergunta, i) => (
