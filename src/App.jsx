@@ -60,6 +60,14 @@ function App() {
     setIndiceAtual(indiceAtual + 1);
   };
 
+  // Função para voltar à pergunta anterior
+  const voltarPergunta = () => {
+    if (indiceAtual > 0) {
+      setIndiceAtual(indiceAtual - 1);
+      setRespostas(respostas.slice(0, -1)); // Remove a última resposta
+    }
+  };
+
   // Função para enviar as respostas para o servidor
   // (substitua a URL pelo endpoint correto do servidor)
   const enviarRespostas = async () => {
@@ -75,6 +83,12 @@ function App() {
     } catch (error) {
       console.error('Erro ao enviar respostas:', error);
     }
+  };
+  // Função para reiniciar a pesquisa
+  const refazerPesquisa = () => {
+    setIndiceAtual(0); // Volta para a primeira pergunta
+    setRespostas([]); // Limpa as respostas
+    //setCadastroConcluido(false); // Retorna para a tela de cadastro, se necessário
   };
 
   // Cálculo do progresso da pesquisa 0 a 100%
@@ -207,10 +221,19 @@ function App() {
                   </button>
                 ))}
               </div>
-              {/* Exibe o número da pergunta atual */}
-              <p style={{ marginTop: '20px', color: '#666' }}>
-                Pergunta {indiceAtual + 1} de {perguntas.length}
-              </p>
+              <div className="rodape-perguntas">
+                {/* Exibe o número da pergunta atual */}
+                <p style={{ marginTop: '20px', color: '#666' }}>
+                  Pergunta {indiceAtual + 1} de {perguntas.length}
+                </p>
+                {/* Botão para voltar à pergunta anterior */}
+                {indiceAtual > 0 && (
+                    <button onClick={voltarPergunta} className="botao-voltar">
+                      Voltar
+                    </button>
+                )}
+              </div>
+              
             </div>
           ) : (
             // Se todas as perguntas foram respondidas, exibe o resumo
@@ -218,9 +241,14 @@ function App() {
             <div className="resumo">
               <div className="container_botao_enviar">
                 {!enviado ? (
+                <>
                   <button className="botao-enviar" onClick={enviarRespostas}>
                     Enviar Respostas
                   </button>
+                  <button className="botao-refazer" onClick={refazerPesquisa}>
+                    Refazer Questionário
+                  </button>
+                </>
                 ) : (
                   // Mensagem de sucesso após o envio
                   <p className="sucesso">Respostas enviadas com sucesso!</p>
