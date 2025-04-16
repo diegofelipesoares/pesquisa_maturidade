@@ -358,12 +358,6 @@ h1 {
     font-size: 0.9rem; /* Ajusta o tamanho da fonte dos campos */
     padding: 8px; /* Reduz o padding dos campos */
   }
-  .perguntas-container .logo,
-  .perguntas-container h1,
-  .perguntas-container h2,
-  .perguntas-container h3 {
-    display: none;
-  }
 
   .botao-enviar,
   .botao-refazer,
