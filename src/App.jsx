@@ -210,7 +210,7 @@ function App() {
           </div>
           {/* Exibe a pergunta atual e as opções de resposta */}
           {indiceAtual < perguntas.length ? (
-            <div>
+            <div className="perguntas-container">
               <h2>{perguntas[indiceAtual]}</h2>
               <div className="opcoes-container">
                 {opcoes.map((opcao, i) => (
