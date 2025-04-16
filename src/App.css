@@ -294,3 +294,90 @@ h1 {
   text-align: center;
   font-size: 18px;
 }
+
+/* RESPONSIVIDADE */
+/*para telas menores (mobile) */
+@media (max-width: 768px) {
+  .app-container {
+    padding: 5vw; /* Reduz o padding para telas menores */
+    max-width: 100vw; /* Garante que o container ocupe toda a largura */
+    margin: 3vw;
+  }
+
+  .logo-container {
+    flex-direction: column; /* Alinha os elementos verticalmente */
+    gap: 10px; /* Reduz o espaçamento entre os elementos */
+  }
+
+  .logo {
+    height: 25vw; /* Ajusta a altura proporcionalmente à largura da tela */
+    width: auto; /* Mantém a proporção da largura */
+    object-fit: contain; /* Garante que a imagem se ajuste sem distorção */
+  }
+
+  h1 {
+    font-size: clamp(1.2rem, 3vw, 2rem); /* Ajusta dinamicamente o tamanho do título */
+    text-align: center; /* Centraliza o texto */
+  }
+
+  h2 {
+    font-size: clamp(1rem, 3vw, 2rem); /* Ajusta dinamicamente o tamanho do subtítulo */
+    text-align: center;
+  }
+
+  h3 {
+    font-size: clamp(0.7rem, 2.5vw, 1.5rem); /* Ajusta dinamicamente o tamanho do subtítulo menor */
+    margin-bottom: 0;
+  }
+
+  .cadastro-container {
+    padding: 15px; /* Reduz o padding do formulário */
+    margin: 10px auto; /* Ajusta as margens */
+  }
+
+  .cadastro-container h2 {
+    font-size: 1.5rem; /* Ajusta o tamanho do título */
+    font-weight: 600; /* Ajusta o peso da fonte */
+    margin-top: 0px;
+    margin-bottom: 15px; /* Reduz a margem inferior */
+  
+  }
+
+  .cadastro-container form {
+    gap: 10px; /* Reduz o espaçamento entre os campos */
+  }
+
+  .cadastro-container input,
+  .cadastro-container select {
+    font-size: 0.9rem; /* Ajusta o tamanho da fonte dos campos */
+    padding: 8px; /* Reduz o padding dos campos */
+  }
+
+  .botao-enviar,
+  .botao-refazer,
+  .botao-voltar {
+    font-size: 0.9rem; /* Ajusta o tamanho da fonte dos botões */
+    padding: 10px 15px; /* Reduz o padding dos botões */
+  }
+
+  .progress-bar {
+    height: 15px; /* Reduz a altura da barra de progresso */
+  }
+
+  .progress {
+    font-size: 0.8rem; /* Ajusta o tamanho do texto na barra de progresso */
+  }
+
+  .opcoes-container {
+    gap: 8px; /* Reduz o espaçamento entre as opções */
+  }
+
+  .rodape-perguntas {
+    flex-direction: column; /* Alinha os elementos verticalmente */
+    gap: 10px; /* Adiciona espaçamento entre os elementos */
+  }
+
+  .resumo ul {
+    padding-left: 20px; /* Ajusta o recuo da lista */
+  }
+}

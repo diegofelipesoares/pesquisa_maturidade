@@ -121,9 +121,7 @@ function App() {
     <div className="app-container">
       {/* Cabeçalho com logo e título */}
       <div className="logo-container">
-        <a href="https://vitejs.dev" target="_blank">
           <img src={deskinho} className="logo" alt="Vite logo" />
-        </a>
         <div>
           <h1>Análise de Maturidade ITIL </h1>
           <h2>Processo de Gerenciamento do Conhecimento</h2>
