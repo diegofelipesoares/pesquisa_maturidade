@@ -192,7 +192,9 @@ function App() {
           </p>
           {/* Barra de progresso */}
           <div className="progress-bar">
-            <div className="progress" style={{ width: `${progresso}%` }}></div>
+            <div className="progress" style={{ width: `${progresso}%` }}>
+              <span className="progress-text">{Math.round(progresso)}%</span>
+            </div>
           </div>
           {/* Exibe a pergunta atual e as opções de resposta */}
           {indiceAtual < perguntas.length ? (
