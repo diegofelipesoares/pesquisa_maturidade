@@ -324,7 +324,6 @@ h1 {
   .perguntas-container h2{
     font-size: clamp(1rem, 3vw, 2rem); /* Ajusta dinamicamente o tamanho do subtítulo */
     text-align: center;
-    display: none;;
   }
 
   .mobile{
