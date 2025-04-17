@@ -239,9 +239,16 @@ function App() {
               <h2>{perguntas[indiceAtual]}</h2>
               <div className="opcoes-container">
                 {opcoes.map((opcao, i) => (
-                  <button key={i} onClick={() => responder(opcao)} className="botao-resposta">
-                    {opcao}
-                  </button>
+                  <button
+                  key={i}
+                  onClick={(e) => {
+                    responder(opcao);
+                    e.target.blur(); // Remove o foco do botão após o clique
+                  }}
+                  className="botao-resposta"
+                >
+                  {opcao}
+                </button>
                 ))}
               </div>
               <div className="rodape-perguntas">

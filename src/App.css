@@ -1,5 +1,10 @@
 /* App.css */
 
+/* Remove o comportamento de foco em navegadores móveis */
+button {
+  -webkit-tap-highlight-color: transparent; /* Remove o destaque ao tocar */
+}
+
 /* Reset geral e fontes */
 body, html, #root {
   margin: 0 auto;
@@ -223,16 +228,16 @@ h1 {
 
 /* Remove o foco azul em dispositivos móveis */
 .botao-resposta:focus {
-  outline: none;
-  box-shadow: none;
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 /* Remove o estado ativo após o clique */
 .botao-resposta:active {
   background-color: #3b6d9c; /* Mantém a cor do hover */
   color: #fff;
-  outline: none;
-  box-shadow: none;
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 .resumo ul {
