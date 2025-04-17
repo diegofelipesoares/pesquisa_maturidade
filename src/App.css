@@ -317,10 +317,29 @@ button:focus {
   box-shadow: none;
 }
 
+/* Animação de piscar */
+@keyframes piscar {
+  0% {
+    background-color: #3b6d9c;
+    color: #fff;
+  }
+  50% {
+    background-color: #ffffff;
+    color: #000;
+  }
+  100% {
+    background-color: #3b6d9c;
+    color: #fff;
+  }
+}
+
 /* RESPONSIVIDADE */
 /*para telas menores (mobile) */
 @media (max-width: 768px) {
-  
+  .botao-resposta.clicado {
+    animation: piscar 0.3s ease-in-out;
+  }
+
   .app-container {
     padding: 5vw; /* Reduz o padding para telas menores */
     max-width: 100vw; /* Garante que o container ocupe toda a largura */

@@ -242,7 +242,9 @@ function App() {
                 <button
                   key={`${indiceAtual}-${i}`} // Chave única baseada na pergunta atual
                   onClick={(e) => {
-                    responder(opcao);
+                    e.target.classList.add("clicado"); // Adiciona a classe "clicado"
+                    setTimeout(() => e.target.classList.remove("clicado"), 300); // Remove a classe após 300ms
+                    responder(opcao); // Chama a função para avançar a pergunta
                     e.target.blur(); // Remove o foco do botão após o clique
                   }}
                   className="botao-resposta"
