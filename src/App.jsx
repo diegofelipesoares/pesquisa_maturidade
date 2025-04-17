@@ -60,7 +60,7 @@ function App() {
       ...respostas,
       { pergunta: perguntas[indiceAtual], resposta }
     ]);
-    setIndiceAtual(indiceAtual + 1);
+    setIndiceAtual((prev) => prev + 1); // Atualiza o índice da pergunta
   };
 
   // Função para voltar à pergunta anterior
@@ -238,9 +238,9 @@ function App() {
             <div className="perguntas-container">
               <h2>{perguntas[indiceAtual]}</h2>
               <div className="opcoes-container">
-                {opcoes.map((opcao, i) => (
-                  <button
-                  key={i}
+              {opcoes.map((opcao, i) => (
+                <button
+                  key={`${indiceAtual}-${i}`} // Chave única baseada na pergunta atual
                   onClick={(e) => {
                     responder(opcao);
                     e.target.blur(); // Remove o foco do botão após o clique
@@ -249,7 +249,7 @@ function App() {
                 >
                   {opcao}
                 </button>
-                ))}
+              ))}
               </div>
               <div className="rodape-perguntas">
                 {/* Exibe o número da pergunta atual */}
