@@ -71,34 +71,42 @@ function App() {
     }
   };
 
-  // Função para enviar as respostas para o servidor
+  // API Flask - Função para enviar as respostas para o servidor
   // (substitua a URL pelo endpoint correto do servidor)
   const enviarRespostas = async () => {
+    // Define o payload (dados a serem enviados para o servidor)
+    // Verifica se o cadastro foi concluído (cadastroConcluido)
+    // Se o cadastro foi concluído, inclui os dados do usuário no payload
     const payload = cadastroConcluido
       ? {
           user: {
-            login: formData.login,
-            coordenadoria: formData.coordenadoria,
-            secao: formData.secao
+            login: formData.login, // Login do usuário (opcional)
+            coordenadoria: formData.coordenadoria, // Coordenadoria selecionada pelo usuário
+            secao: formData.secao // Seção selecionada pelo usuário
           },
-          respostas
+          respostas // Array contendo as respostas do questionário
         }
       : {
-          coordenadoria: formData.coordenadoria,
-          secao: formData.secao,
-          respostas
+          // Caso o cadastro não tenha sido concluído, envia apenas coordenadoria, seção e respostas
+          coordenadoria: formData.coordenadoria, // Coordenadoria selecionada
+          secao: formData.secao, // Seção selecionada
+          respostas // Array contendo as respostas do questionário
         };
   
     try {
+      // Faz uma requisição HTTP para o endpoint do servidor
       const response = await fetch('http://localhost:5000/enviar-respostas', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
+        method: 'POST', // Método HTTP POST para enviar dados
+        headers: { 'Content-Type': 'application/json' }, // Define o tipo de conteúdo como JSON
+        body: JSON.stringify(payload) // Converte o payload para uma string JSON antes de enviar
       });
+  
+      // Verifica se a resposta do servidor foi bem-sucedida (status HTTP 200-299)
       if (response.ok) {
-        setEnviado(true);
+        setEnviado(true); // Atualiza o estado para indicar que as respostas foram enviadas com sucesso
       }
     } catch (error) {
+      // Captura e exibe erros que possam ocorrer durante a requisição
       console.error('Erro ao enviar respostas:', error);
     }
   };
@@ -114,6 +122,7 @@ function App() {
     setRespostas([]); // Limpa as respostas
     setCadastroConcluido(false); // Retorna para a tela de cadastro
     setFormData({ login: "", coordenadoria: "", secao: "" }); // Limpa os dados do formulário
+    setEnviado(false); // Redefine o estado de envio para permitir o envio de novas respostas
   };
 
   // Cálculo do progresso da pesquisa 0 a 100%
