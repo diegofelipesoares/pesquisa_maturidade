@@ -303,6 +303,12 @@ h1 {
   margin-bottom: 20px;
 }
 
+/* Remove o foco azul em dispositivos móveis */
+button:focus {
+  outline: none;
+  box-shadow: none;
+}
+
 /* RESPONSIVIDADE */
 /*para telas menores (mobile) */
 @media (max-width: 768px) {
