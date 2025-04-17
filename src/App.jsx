@@ -74,14 +74,26 @@ function App() {
   // Função para enviar as respostas para o servidor
   // (substitua a URL pelo endpoint correto do servidor)
   const enviarRespostas = async () => {
+    const payload = cadastroConcluido
+      ? {
+          user: {
+            login: formData.login,
+            coordenadoria: formData.coordenadoria,
+            secao: formData.secao
+          },
+          respostas
+        }
+      : {
+          coordenadoria: formData.coordenadoria,
+          secao: formData.secao,
+          respostas
+        };
+  
     try {
       const response = await fetch('http://localhost:5000/enviar-respostas', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          user_id: formData.login, // Use o login como identificador do usuário
-          respostas // envio das respostas
-        })
+        body: JSON.stringify(payload)
       });
       if (response.ok) {
         setEnviado(true);
