@@ -102,11 +102,18 @@ function App() {
       console.error('Erro ao enviar respostas:', error);
     }
   };
-  // Função para reiniciar a pesquisa
+  // Função para refazer a pesquisa
   const refazerPesquisa = () => {
     setIndiceAtual(0); // Volta para a primeira pergunta
     setRespostas([]); // Limpa as respostas
     //setCadastroConcluido(false); // Retorna para a tela de cadastro, se necessário
+  };
+
+  const reiniciarPesquisa = () => {
+    setIndiceAtual(0); // Volta para a primeira pergunta
+    setRespostas([]); // Limpa as respostas
+    setCadastroConcluido(false); // Retorna para a tela de cadastro
+    setFormData({ login: "", coordenadoria: "", secao: "" }); // Limpa os dados do formulário
   };
 
   // Cálculo do progresso da pesquisa 0 a 100%
@@ -153,7 +160,7 @@ function App() {
           <h2>Cadastro</h2>
           <form onSubmit={handleCadastro}>
             <div>
-              <label htmlFor="login">Login:</label>
+              <label htmlFor="login">Login: (campo não obrigatório)</label>
               <input
                 type="text"
                 id="login"
@@ -267,7 +274,12 @@ function App() {
                 </>
                 ) : (
                   // Mensagem de sucesso após o envio
-                  <p className="sucesso">Respostas enviadas com sucesso!</p>
+                  <div className="mensagem-sucesso">
+                    <p className="sucesso">Respostas enviadas com sucesso!</p>
+                    <button className="botao-finalizar" onClick={reiniciarPesquisa}>
+                      Finalizar
+                    </button>
+                  </div>
                 )}
               </div>
               {/* Resumo das respostas */}

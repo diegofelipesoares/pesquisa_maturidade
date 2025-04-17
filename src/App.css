@@ -294,6 +294,14 @@ h1 {
   text-align: center;
   font-size: 18px;
 }
+.mensagem-sucesso{
+  font-size: 16px;
+  margin-top: 10px;
+  text-align: center;
+  color: #555;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
 
 /* RESPONSIVIDADE */
 /*para telas menores (mobile) */
