@@ -56,7 +56,10 @@ function App() {
 
   // Função para responder a pergunta atual e avançar para a próxima
   const responder = (resposta) => {
-    setRespostas([...respostas, resposta]);
+    setRespostas([
+      ...respostas,
+      { pergunta: perguntas[indiceAtual], resposta }
+    ]);
     setIndiceAtual(indiceAtual + 1);
   };
 
@@ -75,7 +78,10 @@ function App() {
       const response = await fetch('http://localhost:5000/enviar-respostas', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ respostas })
+        body: JSON.stringify({
+          user_id: formData.login, // Use o login como identificador do usuário
+          respostas // envio das respostas
+        })
       });
       if (response.ok) {
         setEnviado(true);
@@ -259,7 +265,7 @@ function App() {
                   <li key={i}>
                     <strong>{pergunta}</strong>
                     <br />
-                    Resposta: {respostas[i]}
+                    Resposta: {respostas[i]?.resposta || "Sem resposta"} {/* Acessa a propriedade 'resposta' */}
                   </li>
                 ))}
               </ul>
