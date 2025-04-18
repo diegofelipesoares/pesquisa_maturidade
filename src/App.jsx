@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import deskinho from '../src/img/Deskinho_bandeira.png';
-import './App.css';
+import { useState } from 'react'; // Importa o hook useState para gerenciar estados no componente
+import deskinho from '../src/img/Deskinho_bandeira.png'; // Importa a imagem do logo
+import './App.css'; // Importa o arquivo de estilos CSS
 
 function App() {
   // Mapeamento das coordenadorias e suas respectivas seções
@@ -37,28 +37,24 @@ function App() {
     "5 – Muito Satisfeito"
   ];
 
-  // Estado para controlar o índice da pergunta atual, as respostas, se foi enviado e se o cadastro foi concluído
-  const [indiceAtual, setIndiceAtual] = useState(0);
-  // Estado para armazenar as respostas
-  const [respostas, setRespostas] = useState([]);
-  // Estado para controlar se as respostas foram enviadas
-  const [enviado, setEnviado] = useState(false);
-  // Estado para controlar se o cadastro foi concluído
-  const [cadastroConcluido, setCadastroConcluido] = useState(false);
-  // Estado para armazenar os dados do formulário
-  const [formData, setFormData] = useState({
+  // Estados do componente
+  const [indiceAtual, setIndiceAtual] = useState(0); // Índice da pergunta atual
+  const [respostas, setRespostas] = useState([]); // Respostas fornecidas pelo usuário
+  const [enviado, setEnviado] = useState(false); // Indica se as respostas foram enviadas
+  const [cadastroConcluido, setCadastroConcluido] = useState(false); // Indica se o cadastro foi concluído
+  const [formData, setFormData] = useState({ // Dados do formulário de cadastro
     login: "",
     coordenadoria: "",
     secao: "",
   });
-  // Estado para armazenar as seções disponíveis com base na coordenadoria selecionada
-  const [secoesDisponiveis, setSecoesDisponiveis] = useState([]);
+  const [secoesDisponiveis, setSecoesDisponiveis] = useState([]); // Seções disponíveis com base na coordenadoria selecionada
+
 
   // Função para responder a pergunta atual e avançar para a próxima
   const responder = (resposta) => {
     setRespostas([
       ...respostas,
-      { pergunta: perguntas[indiceAtual], resposta }
+      { pergunta: perguntas[indiceAtual], resposta } // Adiciona a resposta à lista de respostas
     ]);
     setIndiceAtual((prev) => prev + 1); // Atualiza o índice da pergunta
   };
@@ -66,7 +62,7 @@ function App() {
   // Função para voltar à pergunta anterior
   const voltarPergunta = () => {
     if (indiceAtual > 0) {
-      setIndiceAtual(indiceAtual - 1);
+      setIndiceAtual(indiceAtual - 1); // Volta para a pergunta anterior
       setRespostas(respostas.slice(0, -1)); // Remove a última resposta
     }
   };
