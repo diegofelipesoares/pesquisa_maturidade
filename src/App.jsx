@@ -70,24 +70,21 @@ function App() {
   // API Flask - Função para enviar as respostas para o servidor
   // (substitua a URL pelo endpoint correto do servidor)
   const enviarRespostas = async () => {
+    // Verifica se o cadastro foi concluído
+    if (!cadastroConcluido) {
+      console.error("O cadastro não foi concluído. Não é possível enviar as respostas.");
+      return; // Interrompe a execução da função
+    }
+  
     // Define o payload (dados a serem enviados para o servidor)
-    // Verifica se o cadastro foi concluído (cadastroConcluido)
-    // Se o cadastro foi concluído, inclui os dados do usuário no payload
-    const payload = cadastroConcluido
-      ? {
-          user: {
-            login: formData.login, // Login do usuário (opcional)
-            coordenadoria: formData.coordenadoria, // Coordenadoria selecionada pelo usuário
-            secao: formData.secao // Seção selecionada pelo usuário
-          },
-          respostas // Array contendo as respostas do questionário
-        }
-      : {
-          // Caso o cadastro não tenha sido concluído, envia apenas coordenadoria, seção e respostas
-          coordenadoria: formData.coordenadoria, // Coordenadoria selecionada
-          secao: formData.secao, // Seção selecionada
-          respostas // Array contendo as respostas do questionário
-        };
+    const payload = {
+      user: {
+        login: formData.login, // Login do usuário (opcional)
+        coordenadoria: formData.coordenadoria, // Coordenadoria selecionada pelo usuário
+        secao: formData.secao // Seção selecionada pelo usuário
+      },
+      respostas // Array contendo as respostas do questionário
+    };
   
     try {
       // Faz uma requisição HTTP para o endpoint do servidor
@@ -106,6 +103,7 @@ function App() {
       console.error('Erro ao enviar respostas:', error);
     }
   };
+  
   // Função para refazer a pesquisa
   const refazerPesquisa = () => {
     setIndiceAtual(0); // Volta para a primeira pergunta
