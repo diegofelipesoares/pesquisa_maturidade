@@ -288,9 +288,21 @@ function App() {
                   // Mensagem de sucesso após o envio
                   <div className="mensagem-sucesso">
                     <p className="sucesso">Respostas enviadas com sucesso!</p>
-                    <button className="botao-finalizar" onClick={reiniciarPesquisa}>
-                      Finalizar
-                    </button>
+                    <div className="botoes-finalizacao">
+                      {/* Botão para finalizar */}
+                      <button className="botao-finalizar" onClick={reiniciarPesquisa}>
+                        Finalizar
+                      </button>
+                      {/* Botão para resultados parciais */}
+                      <a
+                        href="http://127.0.0.1:8050" // URL do BI com os gráficos
+                        target="_blank" // Abre em uma nova aba
+                        rel="noopener noreferrer" // Boa prática de segurança
+                        className="botao-resultados"
+                      >
+                        Resultados Parciais
+                      </a>
+                    </div>
                   </div>
                 )}
               </div>

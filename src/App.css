@@ -311,6 +311,41 @@ h1 {
   margin-bottom: 20px;
 }
 
+.botao-resultados {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-left: 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.botao-resultados:hover {
+  background-color: #0056b3;
+  color: white;
+}
+
+.botao-finalizar {
+  background-color: #1b1b1b;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-left: 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.botao-finalizar:hover {
+  background-color: #363636;
+  color: white;
+}
+
 /* Remove o foco azul em dispositivos móveis */
 button:focus {
   outline: none;
